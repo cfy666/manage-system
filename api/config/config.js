@@ -1,3 +1,4 @@
+const { REDIS_CONF } = require('./db_config');
 module.exports = {
   qiniu: {
     keys: {
@@ -18,5 +19,18 @@ module.exports = {
       teacher: 'https://msiwei.ke.qq.com/#tab=2&category=-1',
       aboutus: 'https://msiwei.ke.qq.com/#tab=3&category=-1'
     }
+  },
+  sessionInfo: {
+    keys: ['a1!s2@d3#f4$_+g5%h6^'],
+    name: 'txclass.sid',
+    prefix: 'txclass.sess'
+  },
+  cookieInfo: {
+    path: '/',
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000
+  },
+  redisInfo: {
+    all: `${REDIS_CONF[1]}:${REDIS_CONF[0]}`
   }
 }

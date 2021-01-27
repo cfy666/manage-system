@@ -5,8 +5,12 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const session = require('koa-generic-session')
+const koaRedis = require('koa-redis')
+const { sessionInfo, cookieInfo, redisInfo } = require('./config/config')
 
-const crawler = require('./routes/crawler')
+const crawlerRouter = require('./routes/crawler');
+const indexRouter = require('./routes/index');
 
 // error handler
 onerror(app)
@@ -20,7 +24,7 @@ app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
+  extension: 'ejs'
 }))
 
 // logger
@@ -31,8 +35,32 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
+// app.keys = [];//加密cookie的key
+
+// app.use(session({
+//   key: '', //cookie name
+//   prefix: '',//redis key 前缀
+//   cookie: {
+//     path: '/',
+//     httpOnly: true,
+//     maxAge: 24 * 60 * 60 * 1000
+//   },
+//   store: koaRedis({
+//     all: '127.0.0.1:6379'
+//   })
+// }));
+app.keys = sessionInfo.keys;//加密cookie的key
+
+app.use(session({
+  key: sessionInfo.name, //cookie name
+  prefix: sessionInfo.prefix,//redis key 前缀
+  cookie: cookieInfo,
+  store: koaRedis(redisInfo)
+}));
+
 // routes
-app.use(crawler.routes(), crawler.allowedMethods())
+app.use(crawlerRouter.routes(), crawlerRouter.allowedMethods());
+app.use(indexRouter.routes(), indexRouter.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {

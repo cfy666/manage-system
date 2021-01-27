@@ -1,5 +1,6 @@
+const ENV = require('./env_config');
 module.exports = {
-  mysql: {
+  MYSQL_CONF: {
     base: {
       host: 'localhost',
       dialect: 'mysql',
@@ -9,6 +10,7 @@ module.exports = {
         idle: 10000
       }
     },
-    conf: ['txclass', 'root', '']
-  }
+    conf: ['txclass', 'root', ENV.isPrd ? 'xxx' : '']
+  },
+  REDIS_CONF: ['6379', '127.0.0.1']
 }
