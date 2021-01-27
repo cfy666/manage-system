@@ -8,7 +8,8 @@ seq.authenticate().then(() => {
 })
 
 seq.sync({
-  force: true
+  //注释掉其它表不会被重新覆盖
+  // force: true
 }).then(() => {
   console.log('The table has been synchronised into database successful');
   process.exit();

@@ -1,3 +1,4 @@
+const { redisGet, redisSet } = require('../libs/redisClient');
 class Index {
   async index (ctx, next) {
     const sess = ctx.session;
@@ -8,6 +9,12 @@ class Index {
       sess.nickname = 'haha';
       sess.gender = 'male'
     }
+
+    // redisSet('a', 1);
+    // redisSet('json', {a: 1, b: 2});
+    // redisGet('txclass.sessszcIh6Xnfu15UmEvXoETdSOjnNOch1-3').then(res => {
+    //   console.log(res);
+    // })
 
     ctx.body = {
       session: sess
