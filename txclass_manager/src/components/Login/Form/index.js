@@ -7,10 +7,11 @@ import LoginForm from './LoginForm';
 
 export default class Form extends Component {
   render () {
+    const { history } = this.props;
     return (
       <div className="form-wrapper">
         <Title />
-        <LoginForm />
+        <LoginForm history={ history }/>
       </div>
     )
   }

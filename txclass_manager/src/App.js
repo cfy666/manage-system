@@ -13,7 +13,7 @@ function App() {
       <Switch>
         <Route component={ LoginPage } path="/login"></Route>
         <Route path="/" render={ props => (
-          <IndexPage>
+          <IndexPage history={ props.history }>
             <Switch>
               <Route component={ ListPage } path="/sub/list"></Route>
               <Route component={ DetailPage } path="/sub/detail"></Route>
