@@ -1,4 +1,5 @@
-const { REDIS_CONF } = require('./db_config');
+const { REDIS_CONF } = require('./db_config'),
+      { isPrd } = require('./env_config');
 module.exports = {
   qiniu: {
     keys: {
@@ -37,5 +38,6 @@ module.exports = {
     username: 'admin',
     password: 'admin',
   },
-  cryptoSecret: 'JDGFShdfkjj438672@@#$@#4'
+  cryptoSecret: 'JDGFShdfkjj438672@@#$@#4',
+  corsOrigin: isPrd ? 'xxx' : 'http://localhost:3001'
 }

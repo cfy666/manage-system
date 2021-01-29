@@ -16,6 +16,9 @@ class CourseService {
       return await CourseModel.create(data);
     }
   }
+  async getCourses () {
+    return await CourseModel.findAll();
+  }
 }
 
 module.exports = new CourseService();
