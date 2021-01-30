@@ -28,7 +28,7 @@ export default class Logout extends Component {
       <span 
         className="header-logout"
         onClick={ () => this.onLogoutClick() }
-      >安全推出</span>
+      >安全退出</span>
     )
   }
 }
