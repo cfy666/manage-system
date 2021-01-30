@@ -57,6 +57,21 @@ export default class LoginForm extends Component {
     history.push('/');
   }
 
+  async loginCheck () {
+    const result = await loginService.loginCheck();
+
+    const errorCode = result.error_code;
+
+    if (errorCode === 10007) {
+      const { history } = this.props;
+      history.push('/');
+    }
+  }
+
+  componentDidMount () {
+    this.loginCheck();
+  }
+
   render () {
     return (
       <div className="login-form-wrapper">

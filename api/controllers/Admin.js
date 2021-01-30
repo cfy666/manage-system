@@ -49,7 +49,20 @@ class Admin {
       return;
     }
 
-    return ctx.body = returnInfo(LOGIN.SUCCESS);
+    if (!ctx.session.userInfo) {
+      ctx.session.userInfo = result;
+    }
+
+    return ctx.body = returnInfo(LOGIN.SUCCESS, result);
+  }
+
+  async loginCheck (ctx, next) {
+    if (ctx.session && ctx.session.userInfo) {
+      ctx.body = returnInfo(LOGIN.LOGIN_STATUS);
+      return;
+    }
+
+    ctx.body = returnInfo(LOGIN.NOT_LOGIN_STATUS);
   }
 }
 

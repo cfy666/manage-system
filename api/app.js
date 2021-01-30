@@ -21,7 +21,8 @@ onerror(app)
 app.use(cors({
   origin: function (ctx) {
     return corsOrigin
-  }
+  },
+  credentials: true
 }))
 
 // middlewares

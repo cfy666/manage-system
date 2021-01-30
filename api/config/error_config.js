@@ -24,6 +24,10 @@ module.exports = {
       error_code: 10006,
       error_msg: 'It is not loged status.'
     },
+    LOGIN_STATUS: {
+      error_code: 10007,
+      error_msg: 'It is loged status'
+    },
     SUCCESS: {
     	error_code: 0,
     	error_msg: 'Login is ok.'

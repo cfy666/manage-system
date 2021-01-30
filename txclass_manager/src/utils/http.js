@@ -6,6 +6,7 @@ export default class HTTP {
     axios ({
       url: options.url,
       method: 'post',
+      withCredentials: true,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
@@ -19,7 +20,8 @@ export default class HTTP {
   axiosGet (options) {
     axios ({
       url: options.url,
-      method: 'get'
+      method: 'get',
+      withCredentials: true,
     }).then(res => {
       options.success(res.data);
     }).catch(error => {
