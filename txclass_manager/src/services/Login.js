@@ -31,4 +31,19 @@ export default class LoginService extends HTTP {
       })
     })
   }
+
+  logoutAction () {
+    return new Promise((resolve, reject) => {
+      this.axiosGet({
+        url: API.LOGOUT_ACTION,
+        success (data) {
+          resolve(data);
+        },
+        error (err) {
+          alert('网络请求失败');
+          window.location.reload();
+        }
+      })
+    })
+  }
 }

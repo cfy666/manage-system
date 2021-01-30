@@ -28,6 +28,10 @@ module.exports = {
       error_code: 10007,
       error_msg: 'It is loged status'
     },
+    LOGOUT_SUCCESS: {
+      error_code: 0,
+      error_msg: 'Logout is ok.'
+    },
     SUCCESS: {
     	error_code: 0,
     	error_msg: 'Login is ok.'

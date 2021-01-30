@@ -14,6 +14,13 @@ ul {
   list-style: none;
 }
 
+html,
+body,
+#root,
+.container {
+  height: 100%;
+}
+
 a {
   text-decoration: none;
   color: #333;

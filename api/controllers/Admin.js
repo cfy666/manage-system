@@ -14,6 +14,7 @@ class Admin {
       console.log(1);
     }
   }
+
   async loginAction(ctx, next) {
     const { username, password } = ctx.request.body;
 
@@ -53,7 +54,7 @@ class Admin {
       ctx.session.userInfo = result;
     }
 
-    return ctx.body = returnInfo(LOGIN.SUCCESS, result);
+    ctx.body = returnInfo(LOGIN.SUCCESS, result);
   }
 
   async loginCheck (ctx, next) {
@@ -63,6 +64,11 @@ class Admin {
     }
 
     ctx.body = returnInfo(LOGIN.NOT_LOGIN_STATUS);
+  }
+
+  async logoutAction (ctx, next) {
+    delete ctx.session.userInfo;
+    ctx.body = returnInfo(LOGIN.LOGOUT_SUCCESS);
   }
 }
 
