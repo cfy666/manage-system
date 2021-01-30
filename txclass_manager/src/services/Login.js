@@ -1,11 +1,13 @@
 import { API } from '../config/config';
 import HTTP from '../utils/http';
 
+const LOGIN = API.LOGIN;
+
 export default class LoginService extends HTTP {
   loginAction (userInfo) {
     return new Promise((resolve, reject) => {
       this.axiosPost({
-        url: API.LOGIN_ACTION,
+        url: LOGIN.LOGIN_ACTION,
         data: userInfo,
         success (data) {
           resolve(data);
@@ -20,7 +22,7 @@ export default class LoginService extends HTTP {
   loginCheck () {
     return new Promise((resolve, reject) => {
       this.axiosGet({
-        url: API.LOGIN_CHECK,
+        url: LOGIN.LOGIN_CHECK,
         success (data) {
           resolve(data);
         },
@@ -35,7 +37,7 @@ export default class LoginService extends HTTP {
   logoutAction () {
     return new Promise((resolve, reject) => {
       this.axiosGet({
-        url: API.LOGOUT_ACTION,
+        url: LOGIN.LOGOUT_ACTION,
         success (data) {
           resolve(data);
         },

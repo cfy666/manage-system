@@ -16,8 +16,12 @@ class CourseService {
       return await CourseModel.create(data);
     }
   }
-  async getCourses () {
-    return await CourseModel.findAll();
+  async getCourseData () {
+    return await CourseModel.findAll({
+      attributes: {
+        exclude: ['posterUrl', 'description', 'createdAt', 'updatedAt']
+      }
+    });
   }
 }
 

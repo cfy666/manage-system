@@ -11,6 +11,7 @@ import RecomCoursePage from './pages/sub/RecomCourse';
 import SliderPage from './pages/sub/Slider';
 import StudentPage from './pages/sub/Student';
 import TeacherPage from './pages/sub/Teacher';
+import ErrorPage from './pages/sub/Error';
 
 
 
@@ -29,6 +30,7 @@ function App() {
              <Route component={ StudentPage } path="/student"></Route>
              <Route component={ CrawlerPage } path="/crawler"></Route>
              <Route component={ SliderPage } path="/slider"></Route>
+             <Route component={ ErrorPage }></Route>
             </Switch>
           </IndexPage>
         )}></Route>

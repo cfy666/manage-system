@@ -36,5 +36,15 @@ module.exports = {
     	error_code: 0,
     	error_msg: 'Login is ok.'
     }
+  },
+  API: {
+    RETURN_SUCCESS: {
+      error_code: 0,
+      error_msg: 'Data is returned successfully'
+    },
+    RETURN_FAILED: {
+      error_code: 20001,
+      error_msg: 'It is failed to return data'
+    }
   }
 }

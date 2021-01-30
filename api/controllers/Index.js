@@ -1,24 +1,13 @@
-const { getCourses } = require('../services/Course');
+const { getCourseData } = require('../services/Course'),
+      { returnInfo } = require('../libs/utils'),
+      { API } = require('../config/error_config');
 class Index {
-  async index (ctx, next) {
-    const sess = ctx.session;
+  async getCourses (ctx, next) {
+    const data = await getCourseData();
 
-    if (!sess.uid) {
-      sess.uid = 1;
-      sess.username = 'cfy';
-      sess.nickname = 'haha';
-      sess.gender = 'male'
-    }
-
-    ctx.body = {
-      session: sess
-    }
-    
-    // await ctx.render('index');
-  }
-
-  async getCourseData (ctx, next) {
-    return ctx.body = await getCourses();
+    ctx.body = data 
+             ? returnInfo(API.RETURN_SUCCESS, data)
+             : returnInfo(API.RETURN_FAILED);
   }
 }
 
