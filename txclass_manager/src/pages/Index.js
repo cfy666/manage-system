@@ -5,6 +5,7 @@ import LoginService from 'services/Login';
 
 import Header from 'components/Index/Header';
 import SideBar from 'components/Index/SideBar';
+import Container from 'components/Index/Container';
 
 import { NAV } from '../config/config';
 
@@ -31,6 +32,8 @@ export default class IndexPage extends Component {
       history.push('/login');
       return;
     }
+
+    history.push('/course');
   }
 
   onNavItemClick (dataItem, index) {
@@ -57,6 +60,9 @@ export default class IndexPage extends Component {
           curIdx={ curIdx }
           onNavItemClick={ this.onNavItemClick.bind(this) }
         ></SideBar>
+        <Container
+          children={ children }
+        ></Container>
       </div>
     )
   }

@@ -4,8 +4,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import IndexPage from 'pages/Index';
 import LoginPage from 'pages/Login';
 
-import DetailPage from 'pages/sub/Detail';
-import ListPage from 'pages/sub/List';
+import CollectionPage from './pages/sub/Collection';
+import CoursePage from './pages/sub/Course';
+import CrawlerPage from './pages/sub/Crawler';
+import RecomCoursePage from './pages/sub/RecomCourse';
+import SliderPage from './pages/sub/Slider';
+import StudentPage from './pages/sub/Student';
+import TeacherPage from './pages/sub/Teacher';
+
+
 
 function App() {
   return (
@@ -15,8 +22,13 @@ function App() {
         <Route path="/" render={ props => (
           <IndexPage history={ props.history }>
             <Switch>
-              <Route component={ ListPage } path="/sub/list"></Route>
-              <Route component={ DetailPage } path="/sub/detail"></Route>
+             <Route component={ CoursePage } path="/course"></Route>
+             <Route component={ RecomCoursePage } path="/recom_course"></Route>
+             <Route component={ CollectionPage } path="/collection"></Route>
+             <Route component={ TeacherPage } path="/teacher"></Route>
+             <Route component={ StudentPage } path="/student"></Route>
+             <Route component={ CrawlerPage } path="/crawler"></Route>
+             <Route component={ SliderPage } path="/slider"></Route>
             </Switch>
           </IndexPage>
         )}></Route>
