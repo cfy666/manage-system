@@ -55,12 +55,22 @@ export default class Course extends Component {
           })
   }
 
+  async onSelectChange (data, cid, index) {
+    const { courseData } = this.state;
+    courseData[index].field = data.id;
+    courseData[index].fieldTitle = data.title;
+
+    this.setState({
+      courseData
+    })
+  }
+
   componentDidMount () {
     this.getCourseData();
   }
 
   render () {
-    const { title, courseData } = this.state;
+    const { title, courseData, fieldData } = this.state;
     return (
       <div className="list-container">
         <ListTitle 
@@ -73,6 +83,8 @@ export default class Course extends Component {
           ></TableHead>
           <TableBody
             courseData = { courseData }
+            fieldData = { fieldData }
+            onSelectChange={ this.onSelectChange.bind(this)}
           ></TableBody>
         </table>
       </div>
