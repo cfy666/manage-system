@@ -48,6 +48,10 @@ export default class TableSelect extends Component {
         <ul
           className={ ['option-list', listShow ? 'show' : ''].join(' ')}
         >
+          <li
+            className="option-item"
+            onClick= { this.onSelectChange.bind(this, {id: 0, title: '无分类'}, cid, selectIdx) }
+          >无分类</li>
           { fieldData.map((item, index) => {
             return (
               <li

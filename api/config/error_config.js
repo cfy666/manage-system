@@ -45,6 +45,14 @@ module.exports = {
     RETURN_FAILED: {
       error_code: 20001,
       error_msg: 'It is failed to return data'
+    },
+    CHANGE_COURSE_FIELD_SUCCESS: {
+      error_code: 0,
+      error_msg: 'Changing course field successfully.'
+    },
+    CHANGE_COURSE_FIELD_FAILD: {
+      error_code: 20002,
+      error_msg: 'It is failed to change course field.'
     }
   }
 }

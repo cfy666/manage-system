@@ -3,5 +3,6 @@ const router = require('koa-router')(),
       loginCheck = require('../middlewares/loginCheck');
 
 router.get('/get_courses', loginCheck, indexController.getCourses);
+router.post('/change_course_field', loginCheck, indexController.changeCourseField);
 
 module.exports = router;

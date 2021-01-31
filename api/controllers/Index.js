@@ -1,4 +1,4 @@
-const { getCourseData } = require('../services/Course'),
+const { getCourseData, changeField } = require('../services/Course'),
       { getCourseFieldData } = require('../services/CourseTab'),
       { returnInfo } = require('../libs/utils'),
       { API } = require('../config/error_config');
@@ -13,6 +13,19 @@ class Index {
                fieldData
              })
              : returnInfo(API.RETURN_FAILED);
+  }
+
+  async changeCourseField (ctx, next) {
+    const { cid, field } = ctx.request.body;
+
+    const result = await changeField(cid, field);
+
+    if (!result) {
+      ctx.body = returnInfo(API.CHANGE_COURSE_FIELD_FAILD);
+      return;
+    }
+
+    ctx.body = returnInfo(API.CHANGE_COURSE_FIELD_SUCCESS);
   }
 }
 

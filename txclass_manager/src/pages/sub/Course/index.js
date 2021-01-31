@@ -62,7 +62,19 @@ export default class Course extends Component {
 
     this.setState({
       courseData
+    });
+
+    const result = await courseService.changeCourseField({
+      cid,
+      field: data.id
     })
+
+    const errorCode = result.error_code;
+
+    if (errorCode !== 0) {
+      alert('修改课程分类失败');
+      return;
+    }
   }
 
   componentDidMount () {

@@ -16,12 +16,21 @@ class CourseService {
       return await CourseModel.create(data);
     }
   }
+
   async getCourseData () {
     return await CourseModel.findAll({
       attributes: {
         exclude: ['posterUrl', 'description', 'createdAt', 'updatedAt']
       }
     });
+  }
+
+  async changeField (cid, field) {
+    const ret = await CourseModel.update({ field }, {
+      where: { cid }
+    });
+
+    return ret[0];
   }
 }
 
