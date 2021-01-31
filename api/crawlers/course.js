@@ -21,7 +21,6 @@ Crawler({
         price: $el.find('.item-price').text() === '免费' ? '0' : $el.find('.item-price').text().slice(1),
         description: $el.find('.item-status-step').text(),
         studentCount: parseInt($el.find('.item-user').text()),
-        field: -1,
         posterKey: ''
       }
 

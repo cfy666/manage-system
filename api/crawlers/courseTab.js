@@ -14,12 +14,14 @@ Crawler({
             $itemLk = $el.find('.course-tab-filter-item'),
             title = $itemLk.text().replace('促', '');
 
-      const dataItem = {
-        cid: index,
-        title
+      if (title !== '全部') {
+        const dataItem = {
+          cid: index,
+          title
+        }
+  
+        data.push(dataItem);
       }
-
-      data.push(dataItem);
     });
 
     return data;

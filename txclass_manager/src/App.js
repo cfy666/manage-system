@@ -23,7 +23,7 @@ function App() {
         <Route path="/" render={ props => (
           <IndexPage history={ props.history }>
             <Switch>
-             <Route component={ CoursePage } path="/course"></Route>
+             <Route component={ CoursePage } path="/course" history={ props.history }></Route>
              <Route component={ RecomCoursePage } path="/recom_course"></Route>
              <Route component={ CollectionPage } path="/collection"></Route>
              <Route component={ TeacherPage } path="/teacher"></Route>
