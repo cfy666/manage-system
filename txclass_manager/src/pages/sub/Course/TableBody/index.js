@@ -6,7 +6,7 @@ import TableSelect from 'components/common/TableSelect';
 
 export default class TableBody extends Component {
   render () {
-    const { courseData, fieldData, onSelectChange } = this.props;
+    const { courseData, fieldData, onSelectChange, onStatusClick } = this.props;
     return (
       <tbody>
         {
@@ -56,6 +56,7 @@ export default class TableBody extends Component {
                 <td>
                   <button
                     className={ ['btn', item.status ? 'btn-danger' : 'btn-success'].join(' ') }
+                    onClick={ ()=> onStatusClick(item.cid, index) }
                   >
                     { item.status ? '下架' : '上架'}
                   </button>

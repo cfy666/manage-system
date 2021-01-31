@@ -53,6 +53,14 @@ module.exports = {
     CHANGE_COURSE_FIELD_FAILD: {
       error_code: 20002,
       error_msg: 'It is failed to change course field.'
-    }
+    },
+    CHANGE_COURSE_STATUS_SUCCESS: {
+      error_code: 0,
+      error_msg: 'Changing course status successfully.'
+    },
+    CHANGE_COURSE_STATUS_FAILD: {
+      error_code: 20003,
+      error_msg: 'It is failed to change course status.'
+    },
   }
 }

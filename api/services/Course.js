@@ -32,6 +32,14 @@ class CourseService {
 
     return ret[0];
   }
+
+  async changeStatus (cid, status) {
+    const ret = await CourseModel.update({ status }, {
+      where: { cid }
+    });
+
+    return ret[0];
+  }
 }
 
 module.exports = new CourseService();

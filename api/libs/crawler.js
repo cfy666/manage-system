@@ -9,7 +9,18 @@ module.exports = async function (options) {
     waitUntil: 'networkidle2'
   });
 
-  const result = await pg.evaluate(options.callback);
+  let result = await pg.evaluate(options.callback);
+
+  if (result && options.field === 'course') {
+    await pg.waitForSelector('.page-btn.page-last');
+    await pg.click('.page-btn.page-last');
+    await pg.waitFor(2000);
+    const res = await pg.evaluate(options.callback);
+    await pg.waitFor(2000);
+    for (var i = 0; i < res.length; i++) {
+      await result.push(res[i]);
+    }
+  }
 
   await bs.close();
 

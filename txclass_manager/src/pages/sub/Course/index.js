@@ -77,6 +77,48 @@ export default class Course extends Component {
     }
   }
 
+  async onStatusClick (cid, index) {
+    const { courseData } = this.state,
+          status = courseData[index].status;
+
+
+    const cfm = window.confirm(`确认要${ status ? '上架' : '下架'}该课程吗？`);
+
+    if (!cfm) {
+      return;
+    }
+
+    switch (status) {
+      case 1:
+        courseData[index].status = 0;
+        break;
+      case 0:
+        courseData[index].status = 1;
+        break;
+      default:
+        break;
+    }
+
+    this.setState({
+      courseData
+    }, async () => {
+      const result = await courseService.changeCourseStatus({
+        cid,
+        status: courseData[index].status
+      });
+
+      const errorCode = result.error_code;
+
+      if (errorCode !== 0) {
+        const status = this.state.courseData[index].status;
+        alert(
+          status ? '该课程上架失败' : '该课程下架失败'
+        )
+        return;
+      }
+    })
+  }
+
   componentDidMount () {
     this.getCourseData();
   }
@@ -97,6 +139,7 @@ export default class Course extends Component {
             courseData = { courseData }
             fieldData = { fieldData }
             onSelectChange={ this.onSelectChange.bind(this)}
+            onStatusClick= { this.onStatusClick.bind(this) }
           ></TableBody>
         </table>
       </div>

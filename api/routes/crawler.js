@@ -1,5 +1,5 @@
 const router = require('koa-router')(),
-      crawlerController = require('../controllers/Crawler');
+      crawlerController = require('../controllers/Crawler'),
       loginCheck = require('../middlewares/loginCheck');
 
 router.prefix('/crawler');
