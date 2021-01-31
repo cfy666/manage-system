@@ -3,7 +3,7 @@ function trimSpace (str) {
 }
 
 function  getDatas (errorCode, data, history, callback) {
-  if (errorCode === 0 && data && data.length > 0) {
+  if (errorCode === 0 && data) {
     callback();
   } else {
     history.push('/404');

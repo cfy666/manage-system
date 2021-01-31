@@ -10,6 +10,7 @@ import { COURSE_TH } from 'config/table_config';
 
 import ListTitle from 'components/common/ListTitle';
 import TableHead from 'components/common/TableHead';
+import TableBody from './TableBody';
 
 const courseService = new CourseService();
 
@@ -20,7 +21,9 @@ export default class Course extends Component {
     super(props);
 
     this.state = {
-      title: '课程管理'
+      title: '课程管理',
+      courseData: [],
+      fieldData: []
     }
   }
 
@@ -31,7 +34,24 @@ export default class Course extends Component {
           { history } = this.props;
 
           getDatas(errorCode, data, history, () => {
-            console.log(data);
+           const { courseData, fieldData } = data;
+
+           courseData.forEach((cItem, cIndex) => {
+             if (cItem.field === 0) {
+               cItem.fieldTitle = '无分类';
+             }
+
+             fieldData.forEach((fItem, fIndex) => {
+               if (cItem.field === fItem.id) {
+                 cItem.fieldTitle = fItem.title;
+               }
+             })
+           })
+
+           this.setState({
+             courseData,
+             fieldData
+           })
           })
   }
 
@@ -40,14 +60,20 @@ export default class Course extends Component {
   }
 
   render () {
-    const { title } = this.state;
+    const { title, courseData } = this.state;
     return (
       <div className="list-container">
-        <ListTitle title={ title }></ListTitle>
+        <ListTitle 
+          title={ title }
+          onRefreshData= { this.getCourseData.bind(this) }
+        ></ListTitle>
         <table className="list-table">
           <TableHead 
             thData= { COURSE_TH }
           ></TableHead>
+          <TableBody
+            courseData = { courseData }
+          ></TableBody>
         </table>
       </div>
     )

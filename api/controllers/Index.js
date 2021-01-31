@@ -1,12 +1,17 @@
 const { getCourseData } = require('../services/Course'),
+      { getCourseFieldData } = require('../services/CourseTab'),
       { returnInfo } = require('../libs/utils'),
       { API } = require('../config/error_config');
 class Index {
   async getCourses (ctx, next) {
-    const data = await getCourseData();
+    const courseData = await getCourseData(),
+          fieldData = await  getCourseFieldData();
 
-    ctx.body = data 
-             ? returnInfo(API.RETURN_SUCCESS, data)
+    ctx.body = courseData && fieldData
+             ? returnInfo(API.RETURN_SUCCESS, {
+               courseData,
+               fieldData
+             })
              : returnInfo(API.RETURN_FAILED);
   }
 }

@@ -16,6 +16,14 @@ class CourseTabService {
       return await CourseTabModel.create(data);
     }
   }
+
+  async getCourseFieldData () {
+    return await CourseTabModel.findAll({
+      attributes: {
+        exclude: ['cid']
+      }
+    })
+  }
 }
 
 module.exports = new CourseTabService();
