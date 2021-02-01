@@ -11,8 +11,10 @@ import TableHead from 'components/common/TableHead';
 import TableBody from './TableBody';
 
 import RecomCourseService from 'services/RecomCourse';
+import CommonService from 'services/Common';
 
 const recomCourseService = new RecomCourseService();
+const commonService = new CommonService();
 
 
 export default class RecomCourse extends Component {
@@ -64,9 +66,10 @@ export default class RecomCourse extends Component {
     this.setState({
       recomCourseData
     }, async () => {
-      const result = await recomCourseService.changeRecomCourseStatus({
-        cid,
-        status: recomCourseData[index].status
+      const result = await commonService.changeStatus({
+        id: cid,
+        status: recomCourseData[index].status,
+        field: 'RECOM_COURSE'
       });
 
       const errorCode = result.error_code;

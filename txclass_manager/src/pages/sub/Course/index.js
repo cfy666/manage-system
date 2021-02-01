@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './index.scss';
 
 import CourseService from 'services/Course';
+import CommonService from 'services/Common';
 
 import { getDatas } from 'utils/tool';
 
@@ -13,6 +14,7 @@ import TableHead from 'components/common/TableHead';
 import TableBody from './TableBody';
 
 const courseService = new CourseService();
+const commonService = new CommonService();
 
 
 export default class Course extends Component {
@@ -102,9 +104,10 @@ export default class Course extends Component {
     this.setState({
       courseData
     }, async () => {
-      const result = await courseService.changeCourseStatus({
-        cid,
-        status: courseData[index].status
+      const result = await commonService.changeStatus({
+        id: cid,
+        status: courseData[index].status,
+        field: 'COURSE'
       });
 
       const errorCode = result.error_code;

@@ -25,8 +25,8 @@ class RecomCourseService {
     })
   }
 
-  async changeRecomCourseStatus (cid, status) {
-    const ret = await RecomCourseModel.update({ status }, { where: { cid }});
+  async changeRecomCourseStatus (id, status) {
+    const ret = await RecomCourseModel.update({ status }, { where: { cid: id }});
 
     return ret[0];
   }

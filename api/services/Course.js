@@ -33,9 +33,9 @@ class CourseService {
     return ret[0];
   }
 
-  async changeStatus (cid, status) {
+  async changeCourseStatus (id, status) {
     const ret = await CourseModel.update({ status }, {
-      where: { cid }
+      where: { cid: id }
     });
 
     return ret[0];

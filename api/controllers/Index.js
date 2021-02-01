@@ -1,4 +1,4 @@
-const { getCourseData, changeField, changeStatus } = require('../services/Course'),
+const { getCourseData, changeField, changeCourseStatus } = require('../services/Course'),
       { getCourseFieldData } = require('../services/CourseTab'),
       { getRecomCourseData, changeRecomCourseStatus } = require('../services/RecomCourse'),
       { returnInfo } = require('../libs/utils'),
@@ -37,31 +37,55 @@ class Index {
     ctx.body = returnInfo(API.CHANGE_COURSE_FIELD_SUCCESS);
   }
 
-  async changeCourseStatus (ctx, next) {
-    const { cid, status } = ctx.request.body;
+  async changeDataStatus (ctx, next) {
+    const { id, status, field } = ctx.request.body;
+    let result = null;
 
-    const result = await changeStatus(cid, status);
+    switch (field) {
+      case 'COURSE':
+        result = await changeCourseStatus(id, status);
+        break;
+      case 'RECOM_COURSE':
+        result = await changeRecomCourseStatus(id, status);
+        break;
+      default:
+        ctx.body = returnInfo(API.FIELD_ERROR);
+        return;   
+    }
 
     if (!result) {
-      ctx.body = returnInfo(API.CHANGE_COURSE_STATUS_FAILD);
+      ctx.body = returnInfo(API.CHANGE_STATUS_FAILD);
       return;
     }
 
-    ctx.body = returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS);
+    ctx.body = returnInfo(API.CHANGE_STATUS_SUCCESS);
   }
 
-  async changeRecomCourseStatus (ctx, next) {
-    const { cid, status } = ctx.request.body;
+  // async changeCourseStatus (ctx, next) {
+  //   const { cid, status } = ctx.request.body;
 
-    const result = await changeRecomCourseStatus(cid, status);
+  //   const result = await changeStatus(cid, status);
 
-    if (!result) {
-      ctx.body = returnInfo(API.CHANGE_RECOM_COURSE_STATUS_FAILD);
-      return;
-    }
+  //   if (!result) {
+  //     ctx.body = returnInfo(API.CHANGE_COURSE_STATUS_FAILD);
+  //     return;
+  //   }
 
-    ctx.body = returnInfo(API.CHANGE_RECOM_COURSE_STATUS_SUCCESS);
-  }
+  //   ctx.body = returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS);
+  // }
+
+  // async changeRecomCourseStatus (ctx, next) {
+  //   const { cid, status } = ctx.request.body;
+
+  //   const result = await changeRecomCourseStatus(cid, status);
+
+  //   if (!result) {
+  //     ctx.body = returnInfo(API.CHANGE_RECOM_COURSE_STATUS_FAILD);
+  //     return;
+  //   }
+
+  //   ctx.body = returnInfo(API.CHANGE_RECOM_COURSE_STATUS_SUCCESS);
+  // }
 }
 
 module.exports = new Index();

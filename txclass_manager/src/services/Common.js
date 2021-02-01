@@ -1,17 +1,18 @@
 import { API } from 'config/config';
 import HTTP from 'utils/http';
 
-const RECOM_COURSE = API.RECOM_COURSE;
+const COMMON = API.COMMON;
 
-export default class RecomCourseService extends HTTP {
-  getRecomCourseData () {
+export default class CommonService extends HTTP {
+  changeStatus (data) {
     return new Promise((resolve, reject) => {
-      this.axiosGet({
-        url: RECOM_COURSE.GET_RECOM_COURSE_DATA,
+      this.axiosPost({
+        url: COMMON.CHANGE_STATUS,
+        data,
         success (data) {
           resolve(data);
         },
-        error (err) {
+        error (error) {
           alert('网络请求失败');
         }
       })

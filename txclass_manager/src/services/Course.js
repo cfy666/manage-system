@@ -32,19 +32,4 @@ export default class CourseService extends HTTP {
       })
     })
   }
-
-  changeCourseStatus (data) {
-    return new Promise((resolve, reject) => {
-      this.axiosPost({
-        url: COURSE.CHANGE_COURSE_STATUS,
-        data,
-        success (data) {
-          resolve(data);
-        },
-        error (err) {
-          alert('网络请求失败');
-        }
-      })
-    })
-  }
 }
