@@ -82,7 +82,7 @@ export default class Course extends Component {
           status = courseData[index].status;
 
 
-    const cfm = window.confirm(`确认要${ status ? '上架' : '下架'}该课程吗？`);
+    const cfm = window.confirm(`确认要${ status ? '下架' : '上架'}该课程吗？`);
 
     if (!cfm) {
       return;

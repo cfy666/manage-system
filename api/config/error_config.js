@@ -62,5 +62,13 @@ module.exports = {
       error_code: 20003,
       error_msg: 'It is failed to change course status.'
     },
+    CHANGE_RECOM_COURSE_STATUS_SUCCESS: {
+      error_code: 0,
+      error_msg: 'Changing course recommed status successfully.'
+    },
+    CHANGE_RECOM_COURSE_STATUS_FAILD: {
+      error_code: 20004,
+      error_msg: 'It is failed to change recommed course status.'
+    },
   }
 }

@@ -1,5 +1,6 @@
 const { getCourseData, changeField, changeStatus } = require('../services/Course'),
       { getCourseFieldData } = require('../services/CourseTab'),
+      { getRecomCourseData, changeRecomCourseStatus } = require('../services/RecomCourse'),
       { returnInfo } = require('../libs/utils'),
       { API } = require('../config/error_config');
 class Index {
@@ -12,6 +13,14 @@ class Index {
                courseData,
                fieldData
              })
+             : returnInfo(API.RETURN_FAILED);
+  }
+
+  async getRecomCourses (ctx, next) {
+    const data = await getRecomCourseData();
+
+    ctx.body = data
+             ? returnInfo(API.RETURN_SUCCESS, data)
              : returnInfo(API.RETURN_FAILED);
   }
 
@@ -39,6 +48,19 @@ class Index {
     }
 
     ctx.body = returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS);
+  }
+
+  async changeRecomCourseStatus (ctx, next) {
+    const { cid, status } = ctx.request.body;
+
+    const result = await changeRecomCourseStatus(cid, status);
+
+    if (!result) {
+      ctx.body = returnInfo(API.CHANGE_RECOM_COURSE_STATUS_FAILD);
+      return;
+    }
+
+    ctx.body = returnInfo(API.CHANGE_RECOM_COURSE_STATUS_SUCCESS);
   }
 }
 

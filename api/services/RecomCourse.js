@@ -16,6 +16,21 @@ class RecomCourseService {
       return await RecomCourseModel.create(data);
     }
   }
+
+  async getRecomCourseData () {
+    return await RecomCourseModel.findAll({
+      attributes: {
+        exclude: ['mainTitle', 'posterUrl', 'description', 'teacherImg']
+      }
+    })
+  }
+
+  async changeRecomCourseStatus (cid, status) {
+    const ret = await RecomCourseModel.update({ status }, { where: { cid }});
+
+    return ret[0];
+  }
+
 }
 
 module.exports = new RecomCourseService();
