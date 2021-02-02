@@ -2,6 +2,7 @@ const { getCourseData, changeField, changeCourseStatus } = require('../services/
       { getCourseFieldData } = require('../services/CourseTab'),
       { getRecomCourseData, changeRecomCourseStatus } = require('../services/RecomCourse'),
       { getSliderData, changeSliderStatus } = require('../services/Slider'),
+      { getCollectionData, changeCollectionData } = require('../services/Collection'),
       { returnInfo } = require('../libs/utils'),
       { API } = require('../config/error_config');
 class Index {
@@ -33,6 +34,15 @@ class Index {
              : returnInfo(API.RETURN_FAILED);
   }
 
+  async getCollections (ctx, body) {
+    const data = await getCollectionData();
+    
+    ctx.body = data 
+             ? returnInfo(API.RETURN_SUCCESS, data)
+             : returnInfo(API.RETURN_FAILED);
+
+  }
+
   async changeCourseField (ctx, next) {
     const { cid, field } = ctx.request.body;
 
@@ -60,6 +70,9 @@ class Index {
       case 'SLIDER':
         result = await changeSliderStatus(id, status);
         break;
+      case 'COLLECTION':
+        result = await changeCollectionData(id, status);
+        break;
       default:
         ctx.body = returnInfo(API.FIELD_ERROR);
         return;   
@@ -72,32 +85,6 @@ class Index {
 
     ctx.body = returnInfo(API.CHANGE_STATUS_SUCCESS);
   }
-
-  // async changeCourseStatus (ctx, next) {
-  //   const { cid, status } = ctx.request.body;
-
-  //   const result = await changeStatus(cid, status);
-
-  //   if (!result) {
-  //     ctx.body = returnInfo(API.CHANGE_COURSE_STATUS_FAILD);
-  //     return;
-  //   }
-
-  //   ctx.body = returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS);
-  // }
-
-  // async changeRecomCourseStatus (ctx, next) {
-  //   const { cid, status } = ctx.request.body;
-
-  //   const result = await changeRecomCourseStatus(cid, status);
-
-  //   if (!result) {
-  //     ctx.body = returnInfo(API.CHANGE_RECOM_COURSE_STATUS_FAILD);
-  //     return;
-  //   }
-
-  //   ctx.body = returnInfo(API.CHANGE_RECOM_COURSE_STATUS_SUCCESS);
-  // }
 }
 
 module.exports = new Index();

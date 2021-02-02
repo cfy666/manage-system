@@ -26,8 +26,17 @@ const SLIDER_TH = [
   '轮播图上下架'
 ]
 
+const COLLECTION_TH = [
+  '集合ID',
+  '集合图片',
+  '集合标题',
+  '集合描述',
+  '集合上下架'
+]
+
 export {
   COURSE_TH,
   RECOM_COURSE_TH,
-  SLIDER_TH
+  SLIDER_TH,
+  COLLECTION_TH
 }

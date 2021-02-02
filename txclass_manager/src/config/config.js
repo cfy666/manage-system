@@ -18,6 +18,9 @@ const API = {
   },
   SLIDER: {
     GET_SLIDER_DATA: BASE_URL + 'get_sliders'
+  },
+  COLLECTION: {
+    GET_COLLECTION_DATA: BASE_URL + 'get_collections'
   }
 }
 
