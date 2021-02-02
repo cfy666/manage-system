@@ -18,7 +18,16 @@ const RECOM_COURSE_TH = [
   '课程上下架'
 ]
 
+const SLIDER_TH = [
+  '轮播图ID',
+  '跳转课程ID',
+  '轮播图图片',
+  '跳转课程名称',
+  '轮播图上下架'
+]
+
 export {
   COURSE_TH,
-  RECOM_COURSE_TH
+  RECOM_COURSE_TH,
+  SLIDER_TH
 }

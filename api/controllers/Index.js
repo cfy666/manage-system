@@ -1,6 +1,7 @@
 const { getCourseData, changeField, changeCourseStatus } = require('../services/Course'),
       { getCourseFieldData } = require('../services/CourseTab'),
       { getRecomCourseData, changeRecomCourseStatus } = require('../services/RecomCourse'),
+      { getSliderData, changeSliderStatus } = require('../services/Slider'),
       { returnInfo } = require('../libs/utils'),
       { API } = require('../config/error_config');
 class Index {
@@ -20,6 +21,14 @@ class Index {
     const data = await getRecomCourseData();
 
     ctx.body = data
+             ? returnInfo(API.RETURN_SUCCESS, data)
+             : returnInfo(API.RETURN_FAILED);
+  }
+
+  async getSliders (ctx, body) {
+    const data = await getSliderData();
+    
+    ctx.body = data 
              ? returnInfo(API.RETURN_SUCCESS, data)
              : returnInfo(API.RETURN_FAILED);
   }
@@ -47,6 +56,9 @@ class Index {
         break;
       case 'RECOM_COURSE':
         result = await changeRecomCourseStatus(id, status);
+        break;
+      case 'SLIDER':
+        result = await changeSliderStatus(id, status);
         break;
       default:
         ctx.body = returnInfo(API.FIELD_ERROR);

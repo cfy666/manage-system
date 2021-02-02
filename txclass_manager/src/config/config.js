@@ -15,6 +15,9 @@ const API = {
   },
   COMMON: {
     CHANGE_STATUS: BASE_URL + 'change_status'
+  },
+  SLIDER: {
+    GET_SLIDER_DATA: BASE_URL + 'get_sliders'
   }
 }
 
