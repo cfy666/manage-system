@@ -34,9 +34,21 @@ const COLLECTION_TH = [
   '集合上下架'
 ]
 
+const TEACHER_TH = [
+  '老师ID',
+  '老师头像',
+  '老师名称',
+  '课程数量',
+  '学生数量',
+  '老师介绍',
+  '选为明星',
+  '老师上下线'
+]
+
 export {
   COURSE_TH,
   RECOM_COURSE_TH,
   SLIDER_TH,
-  COLLECTION_TH
+  COLLECTION_TH,
+  TEACHER_TH
 }

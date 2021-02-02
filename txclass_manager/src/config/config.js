@@ -21,6 +21,10 @@ const API = {
   },
   COLLECTION: {
     GET_COLLECTION_DATA: BASE_URL + 'get_collections'
+  },
+  TEACHER: {
+    GET_TEACHER_DATA: BASE_URL + 'get_teachers',
+    SELECT_STAR_TEACHER: BASE_URL + 'select_star_teacher'
   }
 }
 

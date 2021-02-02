@@ -3,6 +3,7 @@ const { getCourseData, changeField, changeCourseStatus } = require('../services/
       { getRecomCourseData, changeRecomCourseStatus } = require('../services/RecomCourse'),
       { getSliderData, changeSliderStatus } = require('../services/Slider'),
       { getCollectionData, changeCollectionData } = require('../services/Collection'),
+      { getTeacherData, changeTeacherStatus, selectStartTeacher } = require('../services/Teacher'),
       { returnInfo } = require('../libs/utils'),
       { API } = require('../config/error_config');
 class Index {
@@ -43,6 +44,14 @@ class Index {
 
   }
 
+  async getTeachers (ctx, body) {
+    const data = await getTeacherData();
+
+    ctx.body = data 
+             ? returnInfo(API.RETURN_SUCCESS, data)
+             : returnInfo(API.RETURN_FAILED);
+  }
+
   async changeCourseField (ctx, next) {
     const { cid, field } = ctx.request.body;
 
@@ -73,6 +82,9 @@ class Index {
       case 'COLLECTION':
         result = await changeCollectionData(id, status);
         break;
+      case 'TEACHER':
+        result = await changeTeacherStatus(id, status);
+        break;
       default:
         ctx.body = returnInfo(API.FIELD_ERROR);
         return;   
@@ -84,6 +96,19 @@ class Index {
     }
 
     ctx.body = returnInfo(API.CHANGE_STATUS_SUCCESS);
+  }
+
+  async changeTeacherStar (ctx, body) {
+    const { id, isStar } = ctx.request.body;
+
+    const result = await selectStartTeacher(id, isStar);
+
+    if (!result) {
+      ctx.body = returnInfo(API.SELECT_STAR_TEACHER_FAILED);
+      return;
+    }
+
+    ctx.body = returnInfo(API.SELECT_STAR_TEACHER_SUCCESS);
   }
 }
 

@@ -65,6 +65,14 @@ module.exports = {
     FIELD_ERROR: {
       error_code: 20004,
       error_msg: 'It is a wrong field for the operation.'
+    },
+    SELECT_STAR_TEACHER_SUCCESS: {
+      error_code: 0,
+      error_msg: 'Selectiong star teacher successfully.'
+    },
+    SELECT_STAR_TEACHER_FAILED: {
+      error_code: 20005,
+      error_msg: 'It is failed to select star teacher.'
     }
   }
 }

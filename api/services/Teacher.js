@@ -16,6 +16,30 @@ class TeacherService {
       return await TeacherModel.create(data);
     }
   }
+
+  async getTeacherData () {
+    return await TeacherModel.findAll({
+      attributes: {
+        exclude: ['tid', 'teacherImg']
+      }
+    })
+  }
+
+  async changeTeacherStatus (id, status) {
+    const ret = await TeacherModel.update({ status }, {
+      where: { id }
+    })
+
+    return ret[0];
+  }
+
+  async selectStartTeacher (id, isStar) {
+    const ret = await TeacherModel.update({ isStar },{
+      where: { id }
+    });
+
+    return ret[0];
+  }
 }
 
 module.exports = new TeacherService();
