@@ -32,7 +32,7 @@ export default class IndexPage extends Component {
       return;
     }
 
-    history.push('/student');
+    history.push('/crawler');
   }
 
   onNavItemClick (dataItem, index) {

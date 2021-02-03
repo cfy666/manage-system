@@ -14,5 +14,7 @@ router.get('/crawl_course_tab', loginCheck, crawlerController.crawlCourseTab);
 router.get('/crawl_course', loginCheck, crawlerController.crawlCourse);
 router.get('/crawl_aboutus', loginCheck, crawlerController.crawlAboutus);
 
+router.post('/crawl_action', loginCheck, crawlerController.crawlAction);
+
 
 module.exports = router;

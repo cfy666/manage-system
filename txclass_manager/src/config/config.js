@@ -13,9 +13,6 @@ const API = {
   RECOM_COURSE: {
     GET_RECOM_COURSE_DATA: BASE_URL + 'get_recom_courses'
   },
-  COMMON: {
-    CHANGE_STATUS: BASE_URL + 'change_status'
-  },
   SLIDER: {
     GET_SLIDER_DATA: BASE_URL + 'get_sliders'
   },
@@ -26,8 +23,14 @@ const API = {
     GET_TEACHER_DATA: BASE_URL + 'get_teachers',
     SELECT_STAR_TEACHER: BASE_URL + 'select_star_teacher'
   },
+  CRAWLER: {
+    CRAWL_ACTION: BASE_URL + 'crawler/crawl_action'
+  },
   STUDENT: {
     GET_STUDENT_DATA: BASE_URL + 'get_students'
+  },
+  COMMON: {
+    CHANGE_STATUS: BASE_URL + 'change_status'
   }
 }
 

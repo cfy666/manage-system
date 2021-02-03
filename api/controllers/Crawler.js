@@ -11,6 +11,13 @@ const { startProcess, qiniuUpload } = require('../libs/utils'),
       { qiniu } = require('../config/config');
 
 class Crawler {
+  async crawlAction (ctx, next) {
+    const { field } = ctx.request.body;
+
+    Crawler.prototype[field]();
+
+    ctx.body = 'finished';
+  }
   async crawlSliderData() {
     startProcess({
       file: 'slider',

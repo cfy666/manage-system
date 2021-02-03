@@ -52,6 +52,11 @@ const STUDENT_TH = [
   '学生介绍',
   '学习课程',
   '学生上下线'
+];
+
+const CRAWLER_TH = [
+  '爬虫描述',
+  '爬虫操作'
 ]
 
 export {
@@ -60,5 +65,6 @@ export {
   SLIDER_TH,
   COLLECTION_TH,
   TEACHER_TH,
-  STUDENT_TH
+  STUDENT_TH,
+  CRAWLER_TH
 }
