@@ -4,6 +4,7 @@ const { getCourseData, changeField, changeCourseStatus } = require('../services/
       { getSliderData, changeSliderStatus } = require('../services/Slider'),
       { getCollectionData, changeCollectionData } = require('../services/Collection'),
       { getTeacherData, changeTeacherStatus, selectStartTeacher } = require('../services/Teacher'),
+      { getStudentData, changeStudentStatus } = require('../services/Student'),
       { returnInfo } = require('../libs/utils'),
       { API } = require('../config/error_config');
 class Index {
@@ -27,7 +28,7 @@ class Index {
              : returnInfo(API.RETURN_FAILED);
   }
 
-  async getSliders (ctx, body) {
+  async getSliders (ctx, next) {
     const data = await getSliderData();
     
     ctx.body = data 
@@ -35,7 +36,7 @@ class Index {
              : returnInfo(API.RETURN_FAILED);
   }
 
-  async getCollections (ctx, body) {
+  async getCollections (ctx, next) {
     const data = await getCollectionData();
     
     ctx.body = data 
@@ -44,8 +45,16 @@ class Index {
 
   }
 
-  async getTeachers (ctx, body) {
+  async getTeachers (ctx, next) {
     const data = await getTeacherData();
+
+    ctx.body = data 
+             ? returnInfo(API.RETURN_SUCCESS, data)
+             : returnInfo(API.RETURN_FAILED);
+  }
+
+  async getStudents (ctx, next) {
+    const data = await getStudentData();
 
     ctx.body = data 
              ? returnInfo(API.RETURN_SUCCESS, data)
@@ -84,6 +93,9 @@ class Index {
         break;
       case 'TEACHER':
         result = await changeTeacherStatus(id, status);
+        break;
+      case 'STUDENT':
+        result = await changeStudentStatus(id, status);
         break;
       default:
         ctx.body = returnInfo(API.FIELD_ERROR);

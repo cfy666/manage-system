@@ -25,6 +25,9 @@ const API = {
   TEACHER: {
     GET_TEACHER_DATA: BASE_URL + 'get_teachers',
     SELECT_STAR_TEACHER: BASE_URL + 'select_star_teacher'
+  },
+  STUDENT: {
+    GET_STUDENT_DATA: BASE_URL + 'get_students'
   }
 }
 
