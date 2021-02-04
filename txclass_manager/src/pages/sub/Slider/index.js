@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './index.scss';
 
-import { getDatas } from 'utils/tool';
+import { getDatas, confirmText } from 'utils/tool';
 
 import { SLIDER_TH } from 'config/table_config';
 
@@ -15,6 +15,7 @@ import CommonService from 'services/Common';
 
 const sliderService = new SliderService();
 const commonService = new CommonService();
+const cfmText = confirmText('SLIDER');
 
 
 export default class Slider extends Component {
@@ -43,10 +44,10 @@ export default class Slider extends Component {
 
   async onStatusClick (id, index) {
     const { sliderData } = this.state,
-          status = sliderData[index].status;
+          status = sliderData[index].status,
+          text = cfmText(status);
 
-
-    const cfm = window.confirm(`确认要${ status ? '下架' : '上架'}该轮播图吗？`);
+    const cfm = window.confirm(text);
 
     if (!cfm) {
       return;
@@ -75,7 +76,7 @@ export default class Slider extends Component {
       const errorCode = result.error_code;
 
       if (errorCode !== 0) {
-        const status = this.state.recomCourseData[index].status;
+        const status = sliderData[index].status;
         alert(
           status ? '该轮播图上架失败' : '该轮播图下架失败'
         )

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './index.scss';
 
-import { getDatas } from 'utils/tool';
+import { getDatas, confirmText } from 'utils/tool';
 
 import { COLLECTION_TH } from 'config/table_config';
 
@@ -15,6 +15,7 @@ import CommonService from 'services/Common';
 
 const collectionService = new CollectionService();
 const commonService = new CommonService();
+const cfmText = confirmText('COLLECTION');
 
 
 export default class Collection extends Component {
@@ -43,10 +44,11 @@ export default class Collection extends Component {
 
   async onStatusClick (id, index) {
     const { collectionData } = this.state,
-          status = collectionData[index].status;
+          status = collectionData[index].status,
+          text = cfmText(status);
 
 
-    const cfm = window.confirm(`确认要${ status ? '下架' : '上架'}该集合吗？`);
+    const cfm = window.confirm(text);
 
     if (!cfm) {
       return;
@@ -75,10 +77,8 @@ export default class Collection extends Component {
       const errorCode = result.error_code;
 
       if (errorCode !== 0) {
-        const status = this.state.recomCourseData[index].status;
-        alert(
-          status ? '该集合上架失败' : '该集合下架失败'
-        )
+        const status = recomCourseData[index].status;
+        alert(status ? '该集合上架失败' : '该集合下架失败');
         return;
       }
     })

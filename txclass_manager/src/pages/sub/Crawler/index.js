@@ -61,7 +61,7 @@ export default class Crawler extends Component {
       <div className="list-container">
         <ListTitle 
           title={ title }
-          
+          hideRefresh= { true }
         ></ListTitle>
         <table className="list-table">
           <TableHead 

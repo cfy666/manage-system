@@ -5,7 +5,7 @@ import './index.scss';
 import CourseService from 'services/Course';
 import CommonService from 'services/Common';
 
-import { getDatas } from 'utils/tool';
+import { getDatas, confirmText } from 'utils/tool';
 
 import { COURSE_TH } from 'config/table_config';
 
@@ -15,6 +15,7 @@ import TableBody from './TableBody';
 
 const courseService = new CourseService();
 const commonService = new CommonService();
+const cfmText = confirmText('COURSE');
 
 
 export default class Course extends Component {
@@ -81,10 +82,11 @@ export default class Course extends Component {
 
   async onStatusClick (cid, index) {
     const { courseData } = this.state,
-          status = courseData[index].status;
+          status = courseData[index].status,
+          text = cfmText(status);
 
 
-    const cfm = window.confirm(`确认要${ status ? '下架' : '上架'}该课程吗？`);
+    const cfm = window.confirm(text);
 
     if (!cfm) {
       return;
@@ -113,7 +115,7 @@ export default class Course extends Component {
       const errorCode = result.error_code;
 
       if (errorCode !== 0) {
-        const status = this.state.courseData[index].status;
+        const status = courseData[index].status;
         alert(
           status ? '该课程上架失败' : '该课程下架失败'
         )

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './index.scss';
 
-import { getDatas } from 'utils/tool';
+import { getDatas, confirmText } from 'utils/tool';
 
 import { RECOM_COURSE_TH } from 'config/table_config';
 
@@ -15,6 +15,7 @@ import CommonService from 'services/Common';
 
 const recomCourseService = new RecomCourseService();
 const commonService = new CommonService();
+const cfmText = confirmText('RECOM_COURSE');
 
 
 export default class RecomCourse extends Component {
@@ -43,10 +44,11 @@ export default class RecomCourse extends Component {
 
   async onStatusClick (cid, index) {
     const { recomCourseData } = this.state,
-          status = recomCourseData[index].status;
+          status = recomCourseData[index].status,
+          text = cfmText(status);
 
 
-    const cfm = window.confirm(`确认要${ status ? '下架' : '上架'}该课程吗？`);
+    const cfm = window.confirm(text);
 
     if (!cfm) {
       return;
@@ -75,7 +77,7 @@ export default class RecomCourse extends Component {
       const errorCode = result.error_code;
 
       if (errorCode !== 0) {
-        const status = this.state.recomCourseData[index].status;
+        const status = recomCourseData[index].status;
         alert(
           status ? '该课程上架失败' : '该课程下架失败'
         )

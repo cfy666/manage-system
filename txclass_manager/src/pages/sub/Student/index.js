@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './index.scss';
 
-import { getDatas } from 'utils/tool';
+import { getDatas, confirmText } from 'utils/tool';
 
 import { STUDENT_TH } from 'config/table_config';
 
@@ -12,6 +12,7 @@ import TableBody from './TableBody';
 
 import StudentService from 'services/Student';
 import CommonService from 'services/Common';
+const cfmText = confirmText('STUDENT');
 
 const studentService = new StudentService();
 const commonService = new CommonService();
@@ -43,10 +44,11 @@ export default class Student extends Component {
 
   async onStatusClick (id, index) {
     const { studentData } = this.state,
-          status = studentData[index].status;
+          status = studentData[index].status,
+          text = cfmText(status);
 
 
-    const cfm = window.confirm(`确认要${ status ? '下线' : '上线'}该学生吗？`);
+    const cfm = window.confirm(text);
 
     if (!cfm) {
       return;
@@ -75,7 +77,7 @@ export default class Student extends Component {
       const errorCode = result.error_code;
 
       if (errorCode !== 0) {
-        const status = this.state.recomCourseData[index].status;
+        const status = studentData[index].status;
         alert(
           status ? '该学生上线失败' : '该学生下线失败'
         )
