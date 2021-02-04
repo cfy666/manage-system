@@ -79,6 +79,11 @@ i {
       color: #e85308;
     }
 
+    button {
+      width: 80px;
+      height: 33px;
+    }
+
     tr {
       height: 60px;
 
@@ -99,11 +104,6 @@ i {
         img {
           vertical-align: middle;
           margin: 10px 0;
-        }
-
-        .btn {
-          width: 80px;
-          height: 33px;
         }
 
         a {

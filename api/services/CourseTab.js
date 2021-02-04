@@ -10,7 +10,7 @@ class CourseTabService {
 
     if (result) {
       return await CourseTabModel.update(data, {
-        where: cid
+        where: { cid }
       });
     } else {
       return await CourseTabModel.create(data);

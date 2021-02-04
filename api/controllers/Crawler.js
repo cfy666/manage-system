@@ -12,9 +12,9 @@ const { startProcess, qiniuUpload } = require('../libs/utils'),
 
 class Crawler {
   async crawlAction (ctx, next) {
-    const { field } = ctx.request.body;
+    const { apiName } = ctx.request.body;
 
-    Crawler.prototype[field]();
+    Crawler.prototype[apiName]();
 
     ctx.body = 'finished';
   }
