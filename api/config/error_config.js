@@ -74,5 +74,15 @@ module.exports = {
       error_code: 20005,
       error_msg: 'It is failed to select star teacher.'
     }
+  },
+  CRAWLER: {
+    CRAWL_SUCCESS: {
+      error_code: 0,
+      error_msg: 'Crawling data successfully.'
+    },
+    CRAWL_FAILED: {
+      error_code: 30001,
+      error_msg: 'It is failed to crawl data.'
+    }
   }
 }

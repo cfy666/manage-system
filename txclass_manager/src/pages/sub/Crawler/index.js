@@ -33,14 +33,23 @@ export default class Crawler extends Component {
     this.setState({
         crawlerData
     }, async() => {
-      const result = await crawlerService.crawlAction(apiName);
+      const result = await crawlerService.crawlAction(apiName),
+            errorCode = result.error_code,
+            loading = crawlerData[index].loading;
+      
 
-      console.log(result);
+      crawlerData[index].loading = !loading;
 
-      crawlerData[index].loading = !this.state.crawlerData[index].loading;
       this.setState({
         crawlerData
-      })
+      });
+
+      if (errorCode === 0) {
+        alert('数据爬取成功');
+        return;
+      }
+
+      alert(`数据爬取失败(error_code: ${ errorCode })`);
 
     })
 
